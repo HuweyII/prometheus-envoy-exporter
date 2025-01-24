@@ -30,21 +30,28 @@ go install github.com/loafoe/prometheus-envoy-exporter@latest
 
 ### Configure environment
 
+Default configuration file location is /etc/envoy/envoy.yaml
+
+
 | Environment      | Description                              | Required | Default               |
 |------------------|------------------------------------------|----------|-----------------------|
-| `ENVOY_USERNAME` | Username for Enlighten cloud             | N        |                       |
-| `ENVOY_PASSWORD` | Password for Enlighten cloud             | N        |                       |
-| `ENVOY_SERIAL`   | Serial number of the gateway on your LAN | N        |                       |
-| `ENVOY_LISTEN`   | Listen port of the exporter              | N        | `0.0.0.0:8899`        |
-| `ENVOY_ADDRESS`  | Address of the Envoy-S gateway           | N        | `https://envoy.local` |
-| `ENVOY_JWT`      | Long lived JWT token                     | N        |                       |
-| `ENVOY_REFRESH`  | Seconds to wait between refreshing data  | N        | `20`                  |
+| `username`       | Username for Enlighten cloud             | N        |                       |
+| `password`       | Password for Enlighten cloud             | N        |                       |
+| `serial`         | Serial number of the gateway on your LAN | N        |                       |
+| `listen`         | Listen port of the exporter              | N        | `0.0.0.0:8899`        |
+| `address`        | Address of the Envoy-S gateway           | N        | `https://envoy.local` |
+| `jwt`            | Long lived JWT token                     | N        |                       |
+| `refresh`        | Seconds to wait between refreshing data  | N        | `20`                  |
+
+> Either username and password OR jwt is required
 
 > When you set only a JWT be sure to refresh it at least once a year, otherwise set your Enlighten Cloud login credentials
 
 > When not setting a serial the exporter will attempt to use `mDNS` to discover the Gateway on your local LAN
 
 ### Run exporter
+
+On some platforms, and depending on your paths you may need to CD into the go bin directory. i.e. (linux) `cd ~/go/bin`
 
 ```shell
 prometheus-envoy-exporter
